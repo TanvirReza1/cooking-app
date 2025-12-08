@@ -1,0 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: light --default;
+}
+
+/* @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *)); */
+
+/* body {
+  font-family: "Poppins", sans-serif;
+  
+} */
+
+/* soft gray */
