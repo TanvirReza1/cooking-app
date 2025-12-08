@@ -63,7 +63,10 @@ const NavBar = () => {
             {links}
             {user && (
               <li>
-                <NavLink to="/dashBoard" className="font-semibold mt-2">
+                <NavLink
+                  to="/dashBoard"
+                  className=" hover:text-primary transition font-semibold mt-2"
+                >
                   Dashboard
                 </NavLink>
               </li>
