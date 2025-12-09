@@ -8,58 +8,49 @@ import PrivateRoute from "../Private/PrivateRoute";
 import CreateMeal from "../Pages/DashBoard/ChefDashboard/CreateMeal";
 import Home from "../Pages/Home/Home";
 import MealsPage from "../Pages/Meals";
+import ViewDetails from "../Pages/Home/ViewDetails";
 
 const router = createBrowserRouter([
-  // main Layout
+  // MAIN LAYOUT
   {
     path: "/",
     element: <MainLayout />,
     children: [
+      { index: true, element: <Home /> },
+      { path: "home", element: <Home /> },
+      { path: "meals", element: <MealsPage /> },
+
       {
-        index: true,
-        Component: Home,
-      },
-      {
-        path: "home",
-        Component: Home,
-      },
-      {
-        path: "meals",
-        Component: MealsPage,
+        path: "view-details/:id",
+        element: (
+          <PrivateRoute>
+            <ViewDetails />
+          </PrivateRoute>
+        ),
       },
     ],
   },
 
-  // auth layout
-
+  // AUTH LAYOUT (FIXED)
   {
-    path: "/",
-    element: <AuthLayout></AuthLayout>,
+    path: "/auth",
+    element: <AuthLayout />,
     children: [
-      {
-        path: "logIn",
-        Component: LogIn,
-      },
-      {
-        path: "registration",
-        Component: Registration,
-      },
+      { path: "login", element: <LogIn /> },
+      { path: "registration", element: <Registration /> },
     ],
   },
 
+  // DASHBOARD
   {
-    path: "dashBoard",
+    path: "/dashboard",
     element: (
       <PrivateRoute>
-        <Dashboard></Dashboard>
+        <Dashboard />
       </PrivateRoute>
     ),
-    children: [
-      {
-        path: "create-meal",
-        element: <CreateMeal></CreateMeal>,
-      },
-    ],
+    children: [{ path: "create-meal", element: <CreateMeal /> }],
   },
 ]);
+
 export default router;

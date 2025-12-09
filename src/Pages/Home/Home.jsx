@@ -1,27 +1,53 @@
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 import cook from "../../assets/cook.avif";
 
 const Home = () => {
-  const [meals, setMeals] = useState([]);
-  const [reviews, setReviews] = useState([]);
+  const backendURL = import.meta.env.VITE_BACKEND_URL;
 
-  useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/meals`)
-      .then((res) => setMeals(res.data.slice(0, 6)));
+  // 🔹 Fetch meals (first 6)
+  const {
+    data: meals = [],
+    isLoading: mealsLoading,
+    error: mealsError,
+  } = useQuery({
+    queryKey: ["home-meals"],
+    queryFn: async () => {
+      const res = await axios.get(`${backendURL}/meals`);
+      return res.data.slice(0, 6);
+    },
+  });
 
-    axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/reviews`)
-      .then((res) => setReviews(res.data));
-  }, []);
+  // 🔹 Fetch reviews
+  const {
+    data: reviews = [],
+    isLoading: reviewsLoading,
+    error: reviewsError,
+  } = useQuery({
+    queryKey: ["reviews"],
+    queryFn: async () => {
+      const res = await axios.get(`${backendURL}/reviews`);
+      return res.data;
+    },
+  });
+
+  // 🔹 Loading & Error UI
+  if (mealsLoading || reviewsLoading)
+    return <p className="text-center text-xl py-20">Loading...</p>;
+
+  if (mealsError || reviewsError)
+    return (
+      <p className="text-center text-red-500 py-20">
+        Failed to load content. Try again later.
+      </p>
+    );
 
   return (
     <div className="space-y-24 pb-24">
       {/* ================= HERO SECTION ================= */}
-      <section className="bg-gradient-to-r from-purple-600 to-pink-500 text-white py-20 px-6  ">
+      <section className="bg-gradient-to-r from-purple-600 to-pink-500 text-white py-20 px-6">
         <div className="max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center gap-10">
           <motion.div
             className="flex-1"

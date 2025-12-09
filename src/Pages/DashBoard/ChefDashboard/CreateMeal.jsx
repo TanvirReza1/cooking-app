@@ -2,8 +2,8 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { imageUpload } from "../../../utils";
 
-import useAuth from "../../../hooks/useAuth";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import useAuth from "../../../Hooks/useAuth";
 
 const CreateMeal = () => {
   const { user } = useAuth();
