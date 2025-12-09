@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
 import useAuth from "../../hooks/useAuth";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const ViewDetails = () => {
   const { id } = useParams();
@@ -104,6 +104,7 @@ const ViewDetails = () => {
     reviewMutation.mutate({
       foodId: id,
       reviewerName: user.displayName || "Anonymous User",
+      reviewerEmail: user.email,
       reviewerImage: user.photoURL,
       rating,
       comment: reviewText,
@@ -202,6 +203,7 @@ const ViewDetails = () => {
                 />
                 <div>
                   <h3 className="font-semibold">{r.reviewerName}</h3>
+                  <p className="text-sm text-gray-500">{r.reviewerEmail}</p>
                   <p className="text-yellow-600">⭐ {r.rating}</p>
                 </div>
               </div>
