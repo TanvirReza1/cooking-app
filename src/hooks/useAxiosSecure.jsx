@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useEffect } from "react";
+import { useNavigate } from "react-router";
 import { getAuth } from "firebase/auth";
 import useAuth from "./useAuth";
-import { useNavigate } from "react-router";
 
 const axiosSecure = axios.create({
   baseURL: import.meta.env.VITE_BACKEND_URL,

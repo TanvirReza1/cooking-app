@@ -1,4 +1,5 @@
 import React from "react";
+import { Outlet } from "react-router";
 
 const Dashboard = () => {
   return (
@@ -32,7 +33,7 @@ const Dashboard = () => {
             <div className="px-4">Navbar Title</div>
           </nav>
           {/* Page content here */}
-          <div className="p-4">Page Content</div>
+          <Outlet></Outlet>
         </div>
 
         <div className="drawer-side is-drawer-close:overflow-visible">

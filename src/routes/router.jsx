@@ -4,13 +4,30 @@ import Dashboard from "../Pages/DashBoard/Dashboard";
 import Registration from "../Pages/Registration";
 import AuthLayout from "../Layouts/AuthLayout";
 import LogIn from "../Pages/LogIn";
+import PrivateRoute from "../Private/PrivateRoute";
+import CreateMeal from "../Pages/DashBoard/ChefDashboard/CreateMeal";
+import Home from "../Pages/Home/Home";
+import MealsPage from "../Pages/Meals";
 
 const router = createBrowserRouter([
   // main Layout
   {
     path: "/",
     element: <MainLayout />,
-    children: [],
+    children: [
+      {
+        index: true,
+        Component: Home,
+      },
+      {
+        path: "home",
+        Component: Home,
+      },
+      {
+        path: "meals",
+        Component: MealsPage,
+      },
+    ],
   },
 
   // auth layout
@@ -32,8 +49,17 @@ const router = createBrowserRouter([
 
   {
     path: "dashBoard",
-    element: <Dashboard></Dashboard>,
-    children: [{}],
+    element: (
+      <PrivateRoute>
+        <Dashboard></Dashboard>
+      </PrivateRoute>
+    ),
+    children: [
+      {
+        path: "create-meal",
+        element: <CreateMeal></CreateMeal>,
+      },
+    ],
   },
 ]);
 export default router;
