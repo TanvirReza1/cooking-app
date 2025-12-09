@@ -110,12 +110,6 @@ const Home = () => {
                 <h3 className="text-xl font-bold">{meal.foodName}</h3>
                 <p className="text-gray-600 text-sm">Chef: {meal.chefName}</p>
                 <p className="text-lg font-bold mt-2">${meal.price}</p>
-
-                <Link to={`/meal/${meal._id}`}>
-                  <button className="mt-4 w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700">
-                    View Details
-                  </button>
-                </Link>
               </div>
             </motion.div>
           ))}
