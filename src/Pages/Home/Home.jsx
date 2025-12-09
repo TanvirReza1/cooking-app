@@ -3,6 +3,10 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import cook from "../../assets/cook.avif";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, EffectCoverflow, Pagination } from "swiper/modules";
+import { FaQuoteLeft } from "react-icons/fa";
+import Reviews from "./Review";
 
 const Home = () => {
   const backendURL = import.meta.env.VITE_BACKEND_URL;
@@ -19,30 +23,6 @@ const Home = () => {
       return res.data.slice(0, 6);
     },
   });
-
-  // 🔹 Fetch reviews
-  const {
-    data: reviews = [],
-    isLoading: reviewsLoading,
-    error: reviewsError,
-  } = useQuery({
-    queryKey: ["reviews"],
-    queryFn: async () => {
-      const res = await axios.get(`${backendURL}/reviews`);
-      return res.data;
-    },
-  });
-
-  // 🔹 Loading & Error UI
-  if (mealsLoading || reviewsLoading)
-    return <p className="text-center text-xl py-20">Loading...</p>;
-
-  if (mealsError || reviewsError)
-    return (
-      <p className="text-center text-red-500 py-20">
-        Failed to load content. Try again later.
-      </p>
-    );
 
   return (
     <div className="space-y-24 pb-24">
@@ -117,35 +97,7 @@ const Home = () => {
       </section>
 
       {/* ================= CUSTOMER REVIEWS ================= */}
-      <section className="max-w-7xl mx-auto px-6">
-        <h2 className="text-4xl font-extrabold text-gray-800 text-center mb-12">
-          What Our Customers Say
-        </h2>
-
-        <div className="grid md:grid-cols-3 gap-10">
-          {reviews.map((review) => (
-            <motion.div
-              key={review._id}
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="bg-white p-6 rounded-2xl shadow-md border"
-            >
-              <div className="flex items-center gap-4 mb-4">
-                <img
-                  src={review.image}
-                  className="w-14 h-14 rounded-full object-cover"
-                />
-                <div>
-                  <h4 className="font-bold text-lg">{review.name}</h4>
-                  <p className="text-yellow-500">⭐ {review.rating}</p>
-                </div>
-              </div>
-              <p className="text-gray-700">{review.comment}</p>
-            </motion.div>
-          ))}
-        </div>
-      </section>
+      <Reviews></Reviews>
 
       {/* ================= EXTRA SECTION ================= */}
       <section className="bg-gray-100 py-20 px-6">

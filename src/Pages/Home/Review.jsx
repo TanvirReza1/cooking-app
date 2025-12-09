@@ -22,19 +22,28 @@ const Reviews = () => {
 
   if (isLoading) return <p className="text-center my-10">Loading reviews...</p>;
   if (isError)
+    return <p className="text-center text-red-500">Error loading reviews.</p>;
+
+  // ❗ FIX: Prevent Swiper from running with fewer than 2 slides
+  if (reviews.length < 2) {
     return (
-      <p className="text-center my-10 text-red-500">Failed to load reviews.</p>
+      <div className="my-24 text-center">
+        <h3 className="text-3xl font-bold my-8">Reviews</h3>
+        {reviews.length === 1 ? (
+          <ReviewCard review={reviews[0]} />
+        ) : (
+          <p>No reviews yet.</p>
+        )}
+      </div>
     );
+  }
 
   return (
     <div className="my-24">
       <div className="text-center mb-24">
-        <h3 className="text-3xl text-center font-bold my-8">Reviews</h3>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae
-          molestias earum omnis maiores quia, minima facere quis quisquam ipsa
-          explicabo asperiores iste soluta adipisci laborum similique aliquam
-          exercitationem porro tenetur.
+        <h3 className="text-3xl font-bold my-8">Reviews</h3>
+        <p className="text-gray-600">
+          What our customers are saying about our meals.
         </p>
       </div>
 
@@ -62,7 +71,7 @@ const Reviews = () => {
         className="mySwiper"
       >
         {reviews.map((review) => (
-          <SwiperSlide key={review._id}>
+          <SwiperSlide key={review._id} className="w-[350px] md:w-[450px]">
             <ReviewCard review={review} />
           </SwiperSlide>
         ))}
