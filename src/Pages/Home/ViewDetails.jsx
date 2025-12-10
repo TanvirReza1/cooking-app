@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
@@ -69,17 +69,6 @@ const ViewDetails = () => {
       }
     },
   });
-
-  // -------------------------
-  // HANDLE ACTIONS
-  // -------------------------
-  const handleOrderNow = () => {
-    if (!user) {
-      navigate("/logIn", { state: { from: `/meal/${id}` } });
-      return;
-    }
-    navigate(`/order/${id}`);
-  };
 
   const handleAddFavorite = () => {
     if (!user) {
@@ -156,12 +145,13 @@ const ViewDetails = () => {
 
           {/* ---------- ACTION BUTTONS ---------- */}
           <div className="mt-6 flex gap-3">
-            <button
-              onClick={handleOrderNow}
-              className="bg-green-600 text-white px-5 py-2 rounded-lg"
+            <Link
+              to={`/orderpage/${id}`}
+              className="bg-green-600 text-white px-5 py-2 rounded-lg inline-block"
             >
               Order Now
-            </button>
+            </Link>
+
             <button
               onClick={handleAddFavorite}
               className="bg-yellow-500 text-white px-5 py-2 rounded-lg"

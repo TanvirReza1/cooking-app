@@ -9,6 +9,9 @@ import CreateMeal from "../Pages/DashBoard/ChefDashboard/CreateMeal";
 import Home from "../Pages/Home/Home";
 import MealsPage from "../Pages/Meals";
 import ViewDetails from "../Pages/Home/ViewDetails";
+import OrderPage from "../Pages/OrderPage";
+import UserProfile from "../Pages/DashBoard/UserDashboard/UserProfile";
+import MyOrders from "../Pages/DashBoard/UserDashboard/MyOrders";
 
 const router = createBrowserRouter([
   // MAIN LAYOUT
@@ -25,6 +28,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <ViewDetails />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "orderpage/:id",
+        element: (
+          <PrivateRoute>
+            <OrderPage></OrderPage>
           </PrivateRoute>
         ),
       },
@@ -49,7 +60,17 @@ const router = createBrowserRouter([
         <Dashboard />
       </PrivateRoute>
     ),
-    children: [{ path: "create-meal", element: <CreateMeal /> }],
+    children: [
+      { path: "create-meal", element: <CreateMeal /> },
+      {
+        path: "user-profile",
+        element: <UserProfile></UserProfile>,
+      },
+      {
+        path: "my-orders",
+        element: <MyOrders />,
+      },
+    ],
   },
 ]);
 

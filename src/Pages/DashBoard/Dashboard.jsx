@@ -1,5 +1,8 @@
 import React from "react";
-import { Outlet } from "react-router";
+import { Link, Outlet } from "react-router";
+import ProfilePage from "./UserDashboard/UserProfile";
+import UserProfile from "./UserDashboard/UserProfile";
+import { FaUser } from "react-icons/fa";
 
 const Dashboard = () => {
   return (
@@ -46,6 +49,11 @@ const Dashboard = () => {
             {/* Sidebar content here */}
             <ul className="menu w-full grow">
               {/* List item */}
+              {/* user profile page */}
+              <Link to="/dashboard/user-profile">
+                <FaUser />
+              </Link>
+
               <li>
                 <button
                   className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
