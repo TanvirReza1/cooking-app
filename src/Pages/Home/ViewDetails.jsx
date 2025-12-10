@@ -92,6 +92,7 @@ const ViewDetails = () => {
 
     reviewMutation.mutate({
       foodId: id,
+      foodName: meal.foodName,
       reviewerName: user.displayName || "Anonymous User",
       reviewerEmail: user.email,
       reviewerImage: user.photoURL,
