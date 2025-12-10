@@ -69,6 +69,16 @@ const Dashboard = () => {
                 </button>
               </Link>
 
+              <li>
+                <Link
+                  to="/dashboard/my-reviews"
+                  className="flex items-center gap-3 rounded-lg hover:bg-base-300 transition-all"
+                >
+                  <FiSettings size={18} />
+                  <span>My Reviews</span>
+                </Link>
+              </li>
+
               {/* Settings */}
               <li>
                 <button className="flex items-center gap-3 rounded-lg hover:bg-base-300 transition-all">

@@ -12,6 +12,7 @@ import ViewDetails from "../Pages/Home/ViewDetails";
 import OrderPage from "../Pages/OrderPage";
 import UserProfile from "../Pages/DashBoard/UserDashboard/UserProfile";
 import MyOrders from "../Pages/DashBoard/UserDashboard/MyOrders";
+import MyReview from "../Pages/DashBoard/UserDashboard/MyReview";
 
 const router = createBrowserRouter([
   // MAIN LAYOUT
@@ -70,6 +71,7 @@ const router = createBrowserRouter([
         path: "my-orders",
         element: <MyOrders />,
       },
+      { path: "my-reviews", element: <MyReview /> },
     ],
   },
 ]);
