@@ -1,109 +1,89 @@
 import React from "react";
-import { Link, Outlet } from "react-router";
-import ProfilePage from "./UserDashboard/UserProfile";
-import UserProfile from "./UserDashboard/UserProfile";
-import { FaUser } from "react-icons/fa";
+import { Link, Outlet } from "react-router-dom";
+import { FaCartArrowDown, FaUser } from "react-icons/fa";
+import { FiHome, FiSettings, FiMenu } from "react-icons/fi";
 
 const Dashboard = () => {
   return (
-    <div>
+    <div className="min-h-screen bg-base-100">
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content">
-          {/* Navbar */}
-          <nav className="navbar w-full bg-base-300">
+
+        {/* Main Content */}
+        <div className="drawer-content flex flex-col">
+          {/* NAVBAR */}
+          <nav className="navbar bg-base-300 shadow-md px-4">
             <label
               htmlFor="my-drawer-4"
-              aria-label="open sidebar"
-              className="btn btn-square btn-ghost"
+              className="btn btn-ghost btn-circle lg:hidden"
             >
-              {/* Sidebar toggle icon */}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                strokeLinejoin="round"
-                strokeLinecap="round"
-                strokeWidth="2"
-                fill="none"
-                stroke="currentColor"
-                className="my-1.5 inline-block size-4"
-              >
-                <path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"></path>
-                <path d="M9 4v16"></path>
-                <path d="M14 10l2 2l-2 2"></path>
-              </svg>
+              <FiMenu size={22} />
             </label>
-            <div className="px-4">Navbar Title</div>
+
+            <h2 className="text-xl font-bold tracking-wide">Dashboard Panel</h2>
           </nav>
-          {/* Page content here */}
-          <Outlet></Outlet>
+
+          {/* PAGE CONTENT */}
+          <div className="p-6">
+            <Outlet />
+          </div>
         </div>
 
-        <div className="drawer-side is-drawer-close:overflow-visible">
-          <label
-            htmlFor="my-drawer-4"
-            aria-label="close sidebar"
-            className="drawer-overlay"
-          ></label>
-          <div className="flex min-h-full flex-col items-start bg-base-200 is-drawer-close:w-14 is-drawer-open:w-64">
-            {/* Sidebar content here */}
-            <ul className="menu w-full grow">
-              {/* List item */}
-              {/* user profile page */}
-              <Link to="/dashboard/user-profile">
-                <FaUser />
-              </Link>
+        {/* SIDEBAR */}
+        <div className="drawer-side">
+          <label htmlFor="my-drawer-4" className="drawer-overlay"></label>
 
+          <aside className="w-64 bg-base-200 border-r border-base-300 p-4 flex flex-col">
+            <h3 className="text-lg font-semibold mb-6 px-2">Menu</h3>
+
+            <ul className="menu text-base-content gap-2">
+              {/* User Profile */}
               <li>
-                <button
-                  className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                  data-tip="Homepage"
+                <Link
+                  to="/dashboard/user-profile"
+                  className="flex items-center gap-3 rounded-lg hover:bg-base-300 transition-all"
                 >
-                  {/* Home icon */}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    strokeLinejoin="round"
-                    strokeLinecap="round"
-                    strokeWidth="2"
-                    fill="none"
-                    stroke="currentColor"
-                    className="my-1.5 inline-block size-4"
-                  >
-                    <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path>
-                    <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                  </svg>
-                  <span className="is-drawer-close:hidden">Homepage</span>
-                </button>
+                  <FaUser size={18} />
+                  <span>User Profile</span>
+                </Link>
               </li>
 
-              {/* List item */}
+              {/* My Orders */}
               <li>
-                <button
-                  className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                  data-tip="Settings"
+                <Link
+                  to="/dashboard/my-orders"
+                  className="flex items-center gap-3 rounded-lg hover:bg-base-300 transition-all"
                 >
-                  {/* Settings icon */}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    strokeLinejoin="round"
-                    strokeLinecap="round"
-                    strokeWidth="2"
-                    fill="none"
-                    stroke="currentColor"
-                    className="my-1.5 inline-block size-4"
-                  >
-                    <path d="M20 7h-9"></path>
-                    <path d="M14 17H5"></path>
-                    <circle cx="17" cy="17" r="3"></circle>
-                    <circle cx="7" cy="7" r="3"></circle>
-                  </svg>
-                  <span className="is-drawer-close:hidden">Settings</span>
+                  <FaCartArrowDown size={18} />
+                  <span>My Orders</span>
+                </Link>
+              </li>
+
+              <div className="divider"></div>
+
+              {/* Home */}
+              <Link to="/home">
+                <button className="flex items-center gap-3 rounded-lg hover:bg-base-300 transition-all">
+                  <FiHome size={18} />
+                  <span>Homepage</span>
+                </button>
+              </Link>
+
+              {/* Settings */}
+              <li>
+                <button className="flex items-center gap-3 rounded-lg hover:bg-base-300 transition-all">
+                  <FiSettings size={18} />
+                  <span>Settings</span>
                 </button>
               </li>
             </ul>
-          </div>
+
+            <div className="mt-auto pt-4">
+              <p className="text-sm opacity-60 px-2">
+                © {new Date().getFullYear()} Your App
+              </p>
+            </div>
+          </aside>
         </div>
       </div>
     </div>

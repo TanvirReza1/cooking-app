@@ -21,19 +21,27 @@ const UserProfile = () => {
 
   const requestMutation = useMutation({
     mutationFn: async (reqBody) => axiosSecure.post("/role-requests", reqBody),
+
     onSuccess: () => {
-      Swal.fire(
-        "Request Sent",
-        "Your request has been submitted to admin!",
-        "success"
-      );
+      Swal.fire("Request Sent", "Your role request was submitted!", "success");
       queryClient.invalidateQueries(["userData"]);
+    },
+
+    onError: (error) => {
+      if (error.response?.status === 409) {
+        Swal.fire(
+          "Already Requested",
+          "You already submitted this request. Please wait for admin approval.",
+          "warning"
+        );
+      } else {
+        Swal.fire("Error", "Something went wrong. Try again later.", "error");
+      }
     },
   });
 
   const handleRequest = (type) => {
     const reqData = {
-      _id: userData._id,
       userName: userData.name,
       userEmail: userData.email,
       requestType: type, // chef / admin

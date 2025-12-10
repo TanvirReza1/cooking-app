@@ -5,7 +5,11 @@
   themes: light --default;
 }
 
-/* @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *)); */
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+.drawer-content {
+  overflow-y: auto !important;
+}
 
 /* body {
   font-family: "Poppins", sans-serif;
