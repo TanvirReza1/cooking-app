@@ -87,7 +87,6 @@ const MyReview = () => {
         {myReviews.map((review) => (
           <div key={review._id} className="card border p-4 shadow-md">
             <h2 className="text-xl font-semibold mb-1">{review.foodName}</h2>
-
             <p className="text-yellow-500 font-bold">⭐ {review.rating}</p>
             <p className="mt-2">{review.comment}</p>
             <p className="text-sm text-gray-400 mt-1">

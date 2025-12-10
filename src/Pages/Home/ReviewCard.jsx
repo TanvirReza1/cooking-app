@@ -32,6 +32,10 @@ const ReviewCard = ({ review }) => {
         )}
 
         <div>
+          {/* Food Name */}
+          <p className="text-sm font-semibold text-green-700">
+            {review.foodName}
+          </p>
           {/* Name */}
           <h4 className="font-bold text-gray-900">
             {reviewerName || "Anonymous"}

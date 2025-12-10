@@ -13,6 +13,7 @@ import OrderPage from "../Pages/OrderPage";
 import UserProfile from "../Pages/DashBoard/UserDashboard/UserProfile";
 import MyOrders from "../Pages/DashBoard/UserDashboard/MyOrders";
 import MyReview from "../Pages/DashBoard/UserDashboard/MyReview";
+import FavoriteMeals from "../Pages/DashBoard/UserDashboard/FavoriteMeals";
 
 const router = createBrowserRouter([
   // MAIN LAYOUT
@@ -71,7 +72,14 @@ const router = createBrowserRouter([
         path: "my-orders",
         element: <MyOrders />,
       },
-      { path: "my-reviews", element: <MyReview /> },
+      {
+        path: "my-reviews",
+        element: <MyReview />,
+      },
+      {
+        path: "favorite",
+        element: <FavoriteMeals></FavoriteMeals>,
+      },
     ],
   },
 ]);

@@ -2,6 +2,7 @@ import React from "react";
 import { Link, Outlet } from "react-router-dom";
 import { FaCartArrowDown, FaUser } from "react-icons/fa";
 import { FiHome, FiSettings, FiMenu } from "react-icons/fi";
+import { MdFavorite, MdFavoriteBorder, MdRateReview } from "react-icons/md";
 
 const Dashboard = () => {
   return (
@@ -59,6 +60,30 @@ const Dashboard = () => {
                 </Link>
               </li>
 
+              {/* my review */}
+              <li>
+                <Link
+                  to="/dashboard/my-reviews"
+                  className="flex items-center gap-3 rounded-lg hover:bg-base-300 transition-all"
+                >
+                  <MdRateReview size={18} />
+
+                  <span>My Reviews</span>
+                </Link>
+              </li>
+
+              {/* my favorite */}
+              <li>
+                <Link
+                  to="/dashboard/favorite"
+                  className="flex items-center gap-3 rounded-lg hover:bg-base-300 transition-all"
+                >
+                  <MdFavorite size={18} />
+
+                  <span>My Reviews</span>
+                </Link>
+              </li>
+
               <div className="divider"></div>
 
               {/* Home */}
@@ -68,16 +93,6 @@ const Dashboard = () => {
                   <span>Homepage</span>
                 </button>
               </Link>
-
-              <li>
-                <Link
-                  to="/dashboard/my-reviews"
-                  className="flex items-center gap-3 rounded-lg hover:bg-base-300 transition-all"
-                >
-                  <FiSettings size={18} />
-                  <span>My Reviews</span>
-                </Link>
-              </li>
 
               {/* Settings */}
               <li>
