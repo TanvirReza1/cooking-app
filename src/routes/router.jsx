@@ -15,6 +15,8 @@ import MyOrders from "../Pages/DashBoard/UserDashboard/MyOrders";
 import MyReview from "../Pages/DashBoard/UserDashboard/MyReview";
 import FavoriteMeals from "../Pages/DashBoard/UserDashboard/FavoriteMeals";
 import OrderRequests from "../Pages/DashBoard/ChefDashboard/OrderRequests";
+import AdminRoute from "./AdminRoute ";
+import ManageUsers from "../Pages/DashBoard/AdminDashBoard/ManageUsers";
 
 const router = createBrowserRouter([
   // MAIN LAYOUT
@@ -84,6 +86,16 @@ const router = createBrowserRouter([
       {
         path: "order-requests",
         element: <OrderRequests></OrderRequests>,
+      },
+      {
+        path: "manage-users",
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <ManageUsers></ManageUsers>
+            </AdminRoute>
+          </PrivateRoute>
+        ),
       },
     ],
   },

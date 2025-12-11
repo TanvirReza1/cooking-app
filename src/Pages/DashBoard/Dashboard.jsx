@@ -5,7 +5,7 @@ import { FiHome, FiSettings, FiMenu, FiInbox } from "react-icons/fi";
 import {
   MdAddCircle,
   MdFavorite,
-  MdFavoriteBorder,
+  MdGroups2,
   MdRateReview,
 } from "react-icons/md";
 
@@ -108,6 +108,17 @@ const Dashboard = () => {
                 >
                   <FiInbox size={18} />
                   <span>Order Requests</span>
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  to="/dashboard/manage-users"
+                  className="flex items-center gap-3 rounded-lg hover:bg-base-300 transition-all"
+                >
+                  <MdGroups2 size={18} />
+
+                  <span>Manage Users</span>
                 </Link>
               </li>
 
