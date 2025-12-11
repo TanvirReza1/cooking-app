@@ -6,6 +6,7 @@ import {
   MdAddCircle,
   MdFavorite,
   MdGroups2,
+  MdManageAccounts,
   MdRateReview,
 } from "react-icons/md";
 
@@ -119,6 +120,16 @@ const Dashboard = () => {
                   <MdGroups2 size={18} />
 
                   <span>Manage Users</span>
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  to="/dashboard/manage-requests"
+                  className="flex items-center gap-3 rounded-lg hover:bg-base-300 transition-all"
+                >
+                  <MdManageAccounts size={18} />
+                  Manage Requests
                 </Link>
               </li>
 

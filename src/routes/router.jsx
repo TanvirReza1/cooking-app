@@ -17,6 +17,7 @@ import FavoriteMeals from "../Pages/DashBoard/UserDashboard/FavoriteMeals";
 import OrderRequests from "../Pages/DashBoard/ChefDashboard/OrderRequests";
 import AdminRoute from "./AdminRoute ";
 import ManageUsers from "../Pages/DashBoard/AdminDashBoard/ManageUsers";
+import ManageRequests from "../Pages/AdminDashboard/ManageRequests";
 
 const router = createBrowserRouter([
   // MAIN LAYOUT
@@ -93,6 +94,16 @@ const router = createBrowserRouter([
           <PrivateRoute>
             <AdminRoute>
               <ManageUsers></ManageUsers>
+            </AdminRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "manage-requests",
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <ManageRequests></ManageRequests>
             </AdminRoute>
           </PrivateRoute>
         ),

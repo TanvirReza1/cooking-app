@@ -17,10 +17,11 @@ const ManageUsers = () => {
 
   // MUTATION: MAKE USER FRAUD
   const mutation = useMutation({
-    mutationFn: async (id) => {
-      const res = await axiosSecure.patch(`/users/fraud/${id}`);
+    mutationFn: async (email) => {
+      const res = await axiosSecure.patch(`/users/make-fraud/${email}`);
       return res.data;
     },
+
     onSuccess: () => {
       Swal.fire({
         title: "Updated!",
@@ -79,7 +80,7 @@ const ManageUsers = () => {
                     </button>
                   ) : (
                     <button
-                      onClick={() => mutation.mutate(user._id)}
+                      onClick={() => mutation.mutate(user.email)}
                       className="btn btn-sm btn-error"
                     >
                       Make Fraud
