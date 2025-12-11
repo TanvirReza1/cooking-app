@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 import { imageUpload } from "../../../utils";
 
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
-import useAuth from "../../../Hooks/useAuth";
+import useAuth from "../../../hooks/useAuth";
 
 const CreateMeal = () => {
   const { user } = useAuth();
@@ -34,7 +34,8 @@ const CreateMeal = () => {
         estimatedDeliveryTime: data.estimatedDeliveryTime,
         chefExperience: data.chefExperience,
         chefId: data.chefId,
-        userEmail: user?.email,
+        chefEmail: user?.email,
+
         createdAt: new Date(),
       };
 

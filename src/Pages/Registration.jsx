@@ -1,8 +1,9 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import useAuth from "../hooks/useAuth";
 import { Link, useLocation, useNavigate } from "react-router";
-import useAxiosSecure from "../hooks/useAxiosSecure";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
+import { imageUpload } from "../utils";
+import useAuth from "../hooks/useAuth";
 
 const Registration = () => {
   const { createUser, updateUserProfile } = useAuth();
@@ -19,28 +20,29 @@ const Registration = () => {
   } = useForm();
 
   const handleRegistration = async (data) => {
-    const { email, password, name, image, address, confirmPassword } = data;
-    console.log("this is from what you enter in form", data);
+    const { email, password, confirmPassword, name, address } = data;
 
-    // Password Match Check
     if (password !== confirmPassword) {
       alert("Passwords do not match");
       return;
     }
 
     try {
-      // 1️⃣ Create Firebase User
-      const result = await createUser(email, password);
-      console.log("this is from firebase", result);
+      // 1️⃣ Create Firebase Account
+      await createUser(email, password);
 
-      // 2️⃣ Update Firebase Profile
-      await updateUserProfile(name, image);
+      // 2️⃣ Upload Image to IMGBB
+      const imageFile = data.image[0];
+      const uploadedImageUrl = await imageUpload(imageFile);
 
-      // 3️⃣ Save user in Database (Protected by Firebase Token)
+      // 3️⃣ Update Firebase Profile
+      await updateUserProfile(name, uploadedImageUrl);
+
+      // 4️⃣ Save User in Database
       await axiosSecure.post("/users", {
         name,
         email,
-        image,
+        image: uploadedImageUrl,
         address,
         role: "user",
         status: "active",
@@ -49,7 +51,7 @@ const Registration = () => {
       reset();
       navigate(from, { replace: true });
     } catch (err) {
-      console.error(err);
+      console.error("Registration Error:", err);
     }
   };
 
@@ -79,24 +81,23 @@ const Registration = () => {
             placeholder="Name"
             {...register("name", { required: true })}
           />
-          {errors.name?.type === "required" && (
+          {errors.name && (
             <p className="text-red-500 text-sm">Name is required</p>
           )}
 
           {/* Profile Image */}
-          <label className="label">Profile Image (URL)</label>
+          <label className="label">Profile Image</label>
           <input
-            type="text"
+            type="file"
+            accept="image/*"
             className="input input-bordered w-full"
-            placeholder="Image URL"
             {...register("image", { required: true })}
           />
-          {errors.image?.type === "required" && (
+          {errors.image && (
             <p className="text-red-500 text-sm">Image is required</p>
           )}
 
-          {/* address */}
-
+          {/* Address */}
           <label className="label">Address</label>
           <input
             type="text"
@@ -104,7 +105,7 @@ const Registration = () => {
             placeholder="Address"
             {...register("address", { required: true })}
           />
-          {errors.address?.type === "required" && (
+          {errors.address && (
             <p className="text-red-500 text-sm">Address is required</p>
           )}
 
@@ -116,9 +117,8 @@ const Registration = () => {
             placeholder="Password"
             {...register("password", { required: true, minLength: 6 })}
           />
-
           {errors.password?.type === "required" && (
-            <p className="text-red-500 text-sm"> password is required</p>
+            <p className="text-red-500 text-sm">Password is required</p>
           )}
           {errors.password?.type === "minLength" && (
             <p className="text-red-500 text-sm">
@@ -126,7 +126,7 @@ const Registration = () => {
             </p>
           )}
 
-          {/* confirm password */}
+          {/* Confirm Password */}
           <label className="label">Confirm Password</label>
           <input
             type="password"
@@ -134,8 +134,7 @@ const Registration = () => {
             placeholder="Confirm Password"
             {...register("confirmPassword", { required: true })}
           />
-
-          {errors.confirmPassword?.type === "required" && (
+          {errors.confirmPassword && (
             <p className="text-red-500 text-sm">Confirm password is required</p>
           )}
 

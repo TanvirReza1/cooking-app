@@ -1,8 +1,13 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
 import { FaCartArrowDown, FaUser } from "react-icons/fa";
-import { FiHome, FiSettings, FiMenu } from "react-icons/fi";
-import { MdFavorite, MdFavoriteBorder, MdRateReview } from "react-icons/md";
+import { FiHome, FiSettings, FiMenu, FiInbox } from "react-icons/fi";
+import {
+  MdAddCircle,
+  MdFavorite,
+  MdFavoriteBorder,
+  MdRateReview,
+} from "react-icons/md";
 
 const Dashboard = () => {
   return (
@@ -80,7 +85,29 @@ const Dashboard = () => {
                 >
                   <MdFavorite size={18} />
 
-                  <span>My Reviews</span>
+                  <span>My Favorite</span>
+                </Link>
+              </li>
+
+              {/* Create Meal */}
+              <li>
+                <Link
+                  to="/dashboard/create-meal"
+                  className="flex items-center gap-3 rounded-lg hover:bg-base-300 transition-all"
+                >
+                  <MdAddCircle size={18} />
+                  <span>Create Meal</span>
+                </Link>
+              </li>
+
+              {/* Order Requests */}
+              <li>
+                <Link
+                  to="/dashboard/order-requests"
+                  className="flex items-center gap-3 rounded-lg hover:bg-base-300 transition-all"
+                >
+                  <FiInbox size={18} />
+                  <span>Order Requests</span>
                 </Link>
               </li>
 

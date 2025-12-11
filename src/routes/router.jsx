@@ -14,6 +14,7 @@ import UserProfile from "../Pages/DashBoard/UserDashboard/UserProfile";
 import MyOrders from "../Pages/DashBoard/UserDashboard/MyOrders";
 import MyReview from "../Pages/DashBoard/UserDashboard/MyReview";
 import FavoriteMeals from "../Pages/DashBoard/UserDashboard/FavoriteMeals";
+import OrderRequests from "../Pages/DashBoard/ChefDashboard/OrderRequests";
 
 const router = createBrowserRouter([
   // MAIN LAYOUT
@@ -46,7 +47,7 @@ const router = createBrowserRouter([
 
   // AUTH LAYOUT (FIXED)
   {
-    path: "/auth",
+    path: "/",
     element: <AuthLayout />,
     children: [
       { path: "login", element: <LogIn /> },
@@ -79,6 +80,10 @@ const router = createBrowserRouter([
       {
         path: "favorite",
         element: <FavoriteMeals></FavoriteMeals>,
+      },
+      {
+        path: "order-requests",
+        element: <OrderRequests></OrderRequests>,
       },
     ],
   },
