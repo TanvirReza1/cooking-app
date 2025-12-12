@@ -21,6 +21,7 @@ import ManageRequests from "../Pages/AdminDashboard/ManageRequests";
 import PaymentSuccess from "../Pages/PaymentSuccess";
 import PlatformStatistics from "../Pages/DashBoard/AdminDashBoard/PlatformStatistics";
 import ErrorPage from "../ErrorPage";
+import SetTitle from "../Components/SetTitile";
 
 const router = createBrowserRouter([
   // MAIN LAYOUT
@@ -29,15 +30,37 @@ const router = createBrowserRouter([
     element: <MainLayout />,
     errorElement: <ErrorPage />,
     children: [
-      { index: true, element: <Home /> },
-      { path: "home", element: <Home /> },
-      { path: "meals", element: <MealsPage /> },
-
+      {
+        index: true,
+        element: (
+          <SetTitle title="Home">
+            <Home />
+          </SetTitle>
+        ),
+      },
+      {
+        path: "home",
+        element: (
+          <SetTitle title="Home">
+            <Home />
+          </SetTitle>
+        ),
+      },
+      {
+        path: "meals",
+        element: (
+          <SetTitle title="Meals">
+            <MealsPage />
+          </SetTitle>
+        ),
+      },
       {
         path: "view-details/:id",
         element: (
           <PrivateRoute>
-            <ViewDetails />
+            <SetTitle title="View Details">
+              <ViewDetails />
+            </SetTitle>
           </PrivateRoute>
         ),
       },
@@ -45,7 +68,9 @@ const router = createBrowserRouter([
         path: "orderpage/:id",
         element: (
           <PrivateRoute>
-            <OrderPage></OrderPage>
+            <SetTitle title="Order Page">
+              <OrderPage></OrderPage>
+            </SetTitle>
           </PrivateRoute>
         ),
       },
@@ -57,8 +82,22 @@ const router = createBrowserRouter([
     path: "/",
     element: <AuthLayout />,
     children: [
-      { path: "login", element: <LogIn /> },
-      { path: "registration", element: <Registration /> },
+      {
+        path: "login",
+        element: (
+          <SetTitle title="Login">
+            <LogIn />
+          </SetTitle>
+        ),
+      },
+      {
+        path: "registration",
+        element: (
+          <SetTitle title="Registration">
+            <Registration />
+          </SetTitle>
+        ),
+      },
     ],
   },
 
@@ -67,7 +106,9 @@ const router = createBrowserRouter([
     path: "payment-success/:orderId",
     element: (
       <PrivateRoute>
-        <PaymentSuccess />
+        <SetTitle title="Payment Success">
+          <PaymentSuccess />
+        </SetTitle>
       </PrivateRoute>
     ),
   },
@@ -82,33 +123,62 @@ const router = createBrowserRouter([
     ),
     errorElement: <ErrorPage />,
     children: [
-      { path: "create-meal", element: <CreateMeal /> },
+      {
+        path: "create-meal",
+        element: (
+          <SetTitle title="Create Meal">
+            <CreateMeal />
+          </SetTitle>
+        ),
+      },
       {
         path: "user-profile",
-        element: <UserProfile></UserProfile>,
+        element: (
+          <SetTitle title="User Profile">
+            <UserProfile></UserProfile>
+          </SetTitle>
+        ),
       },
       {
         path: "my-orders",
-        element: <MyOrders />,
+        element: (
+          <SetTitle title="My Orders">
+            <MyOrders />
+          </SetTitle>
+        ),
       },
       {
         path: "my-reviews",
-        element: <MyReview />,
+        element: (
+          <SetTitle title="My Reviews">
+            <MyReview />
+          </SetTitle>
+        ),
       },
       {
         path: "favorite",
-        element: <FavoriteMeals></FavoriteMeals>,
+        element: (
+          <SetTitle title="Favorite Meals">
+            <FavoriteMeals></FavoriteMeals>
+          </SetTitle>
+        ),
       },
       {
         path: "order-requests",
-        element: <OrderRequests></OrderRequests>,
+        element: (
+          <SetTitle title="Order Requests">
+            <OrderRequests></OrderRequests>
+          </SetTitle>
+        ),
       },
       {
         path: "manage-users",
         element: (
           <PrivateRoute>
             <AdminRoute>
-              <ManageUsers></ManageUsers>
+              <SetTitle title="Manage Users">
+                <ManageUsers></ManageUsers>
+              </SetTitle>
             </AdminRoute>
           </PrivateRoute>
         ),
@@ -118,7 +188,9 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <AdminRoute>
-              <ManageRequests></ManageRequests>
+              <SetTitle title="Manage Requests">
+                <ManageRequests></ManageRequests>
+              </SetTitle>
             </AdminRoute>
           </PrivateRoute>
         ),
@@ -128,7 +200,9 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <AdminRoute>
-              <PlatformStatistics />
+              <SetTitle title="Platform Statistics">
+                <PlatformStatistics />
+              </SetTitle>
             </AdminRoute>
           </PrivateRoute>
         ),
