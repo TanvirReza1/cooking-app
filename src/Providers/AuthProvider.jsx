@@ -8,6 +8,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../fireBase/Firebase.config";
+import Loading from "../Pages/Loading";
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -56,7 +57,10 @@ const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={authInfo}>
+      {" "}
+      {loading ? <Loading /> : children}
+    </AuthContext.Provider>
   );
 };
 

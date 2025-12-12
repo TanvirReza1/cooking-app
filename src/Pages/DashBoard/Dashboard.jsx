@@ -4,6 +4,7 @@ import { FaCartArrowDown, FaUser } from "react-icons/fa";
 import { FiHome, FiSettings, FiMenu, FiInbox } from "react-icons/fi";
 import {
   MdAddCircle,
+  MdBarChart,
   MdFavorite,
   MdGroups2,
   MdManageAccounts,
@@ -38,7 +39,10 @@ const Dashboard = () => {
 
         {/* SIDEBAR */}
         <div className="drawer-side">
-          <label htmlFor="my-drawer-4" className="drawer-overlay"></label>
+          <label
+            htmlFor="my-drawer-4"
+            className="drawer-overlay cursor-pointer"
+          ></label>
 
           <aside className="w-64 bg-base-200 border-r border-base-300 p-4 flex flex-col">
             <h3 className="text-lg font-semibold mb-6 px-2">Menu</h3>
@@ -130,6 +134,16 @@ const Dashboard = () => {
                 >
                   <MdManageAccounts size={18} />
                   Manage Requests
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  to="/dashboard/statistics"
+                  className="flex items-center gap-3 rounded-lg hover:bg-base-300 transition-all"
+                >
+                  <MdBarChart size={18} />
+                  <span>Statistics</span>
                 </Link>
               </li>
 

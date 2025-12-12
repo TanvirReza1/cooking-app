@@ -7,8 +7,23 @@
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
+html,
+body {
+  cursor: default !important;
+}
+
 .drawer-content {
   overflow-y: auto !important;
+}
+
+.drawer-toggle {
+  position: absolute !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+}
+
+.drawer-toggle {
+  display: none !important;
 }
 
 /* body {

@@ -19,12 +19,15 @@ import AdminRoute from "./AdminRoute ";
 import ManageUsers from "../Pages/DashBoard/AdminDashBoard/ManageUsers";
 import ManageRequests from "../Pages/AdminDashboard/ManageRequests";
 import PaymentSuccess from "../Pages/PaymentSuccess";
+import PlatformStatistics from "../Pages/DashBoard/AdminDashBoard/PlatformStatistics";
+import ErrorPage from "../ErrorPage";
 
 const router = createBrowserRouter([
   // MAIN LAYOUT
   {
     path: "/",
     element: <MainLayout />,
+    errorElement: <ErrorPage />,
     children: [
       { index: true, element: <Home /> },
       { path: "home", element: <Home /> },
@@ -77,6 +80,7 @@ const router = createBrowserRouter([
         <Dashboard />
       </PrivateRoute>
     ),
+    errorElement: <ErrorPage />,
     children: [
       { path: "create-meal", element: <CreateMeal /> },
       {
@@ -115,6 +119,16 @@ const router = createBrowserRouter([
           <PrivateRoute>
             <AdminRoute>
               <ManageRequests></ManageRequests>
+            </AdminRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/statistics",
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <PlatformStatistics />
             </AdminRoute>
           </PrivateRoute>
         ),
