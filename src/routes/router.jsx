@@ -22,6 +22,7 @@ import PaymentSuccess from "../Pages/PaymentSuccess";
 import PlatformStatistics from "../Pages/DashBoard/AdminDashBoard/PlatformStatistics";
 import ErrorPage from "../ErrorPage";
 import SetTitle from "../Components/SetTitile";
+import ChefRoute from "./ChefRoute";
 
 const router = createBrowserRouter([
   // MAIN LAYOUT
@@ -126,9 +127,13 @@ const router = createBrowserRouter([
       {
         path: "create-meal",
         element: (
-          <SetTitle title="Create Meal">
-            <CreateMeal />
-          </SetTitle>
+          <PrivateRoute>
+            <ChefRoute>
+              <SetTitle title="Create Meal">
+                <CreateMeal />
+              </SetTitle>
+            </ChefRoute>
+          </PrivateRoute>
         ),
       },
       {
@@ -166,9 +171,13 @@ const router = createBrowserRouter([
       {
         path: "order-requests",
         element: (
-          <SetTitle title="Order Requests">
-            <OrderRequests></OrderRequests>
-          </SetTitle>
+          <PrivateRoute>
+            <ChefRoute>
+              <SetTitle title="Order Requests">
+                <OrderRequests></OrderRequests>
+              </SetTitle>
+            </ChefRoute>
+          </PrivateRoute>
         ),
       },
       {
