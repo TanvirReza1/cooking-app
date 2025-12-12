@@ -68,7 +68,9 @@ const MyOrders = () => {
 
               <p>
                 <strong>Order Time:</strong>{" "}
-                {new Date(order.orderTime).toLocaleString()}
+                {order.createdAt
+                  ? new Date(order.createdAt).toLocaleString()
+                  : "N/A"}
               </p>
 
               {/* Pay Button */}

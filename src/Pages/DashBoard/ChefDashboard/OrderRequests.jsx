@@ -76,7 +76,9 @@ const OrderRequests = () => {
               </p>
               <p>
                 <strong>Order Time:</strong>{" "}
-                {new Date(order.createdAt).toLocaleString()}
+                {order.createdAt
+                  ? new Date(order.createdAt).toLocaleString()
+                  : "N/A"}
               </p>
 
               {/* Buttons */}
