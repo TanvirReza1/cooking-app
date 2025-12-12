@@ -18,6 +18,7 @@ import OrderRequests from "../Pages/DashBoard/ChefDashboard/OrderRequests";
 import AdminRoute from "./AdminRoute ";
 import ManageUsers from "../Pages/DashBoard/AdminDashBoard/ManageUsers";
 import ManageRequests from "../Pages/AdminDashboard/ManageRequests";
+import PaymentSuccess from "../Pages/PaymentSuccess";
 
 const router = createBrowserRouter([
   // MAIN LAYOUT
@@ -56,6 +57,16 @@ const router = createBrowserRouter([
       { path: "login", element: <LogIn /> },
       { path: "registration", element: <Registration /> },
     ],
+  },
+
+  // PUBLIC MAIN ROUTES
+  {
+    path: "payment-success/:orderId",
+    element: (
+      <PrivateRoute>
+        <PaymentSuccess />
+      </PrivateRoute>
+    ),
   },
 
   // DASHBOARD

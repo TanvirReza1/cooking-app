@@ -1,4 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
+
+import { Link } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
@@ -14,6 +16,21 @@ const MyOrders = () => {
       return res.data;
     },
   });
+
+  const handlePayment = async (order) => {
+    try {
+      const res = await axiosSecure.post("/create-payment-intent", {
+        price: order.price,
+        orderId: order._id,
+      });
+
+      window.location.assign(res.data.paymentUrl);
+      // Redirect to Stripe Checkout
+    } catch (err) {
+      console.error(err);
+      alert("Payment initialization failed");
+    }
+  };
 
   if (isLoading) return <div>Loading...</div>;
 
@@ -33,23 +50,18 @@ const MyOrders = () => {
               <p>
                 <strong>Meal:</strong> {order.mealName}
               </p>
-
               <p>
                 <strong>Price:</strong> {order.price} ৳
               </p>
-
               <p>
                 <strong>Quantity:</strong> {order.quantity}
               </p>
-
               <p>
                 <strong>Order Status:</strong> {order.orderStatus}
               </p>
-
               <p>
                 <strong>Payment Status:</strong> {order.paymentStatus}
               </p>
-
               <p>
                 <strong>Chef ID:</strong> {order.chefId}
               </p>
@@ -58,6 +70,27 @@ const MyOrders = () => {
                 <strong>Order Time:</strong>{" "}
                 {new Date(order.orderTime).toLocaleString()}
               </p>
+
+              {/* Pay Button */}
+              {order.orderStatus === "accepted" &&
+                order.paymentStatus === "pending" && (
+                  <button
+                    onClick={() => handlePayment(order)}
+                    className="btn btn-primary mt-4"
+                  >
+                    Pay Now
+                  </button>
+                )}
+
+              {/* After Payment */}
+              {order.paymentStatus === "paid" && (
+                <Link
+                  to={`/payment-success/${order._id}`}
+                  className="btn btn-success mt-4"
+                >
+                  View Payment Receipt
+                </Link>
+              )}
             </div>
           ))}
         </div>
