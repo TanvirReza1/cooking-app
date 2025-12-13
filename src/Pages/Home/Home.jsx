@@ -75,18 +75,19 @@ const Home = () => {
 
       {/* ================= DAILY MEALS ================= */}
       <section className="max-w-7xl mx-auto px-6">
-        <h2 className="w-full max-w-md mx-auto drop-shadow-2xl md:max-w-lg text-4xl font-bold tracking-wide mb-10">
+        <h2 className="w-full max-w-md mx-auto drop-shadow-2xl md:max-w-lg text-4xl font-bold tracking-wide mb-10 text-center">
           Today’s Special Meals
         </h2>
 
-        <div className="grid md:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {meals.map((meal) => (
             <motion.div
               key={meal._id}
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7 }}
-              className="bg-white shadow-xl rounded-2xl overflow-hidden border"
+              className="bg-white shadow-lg sm:shadow-xl rounded-2xl overflow-hidden border
+           mx-auto w-full max-w-sm sm:max-w-none"
             >
               <img
                 src={meal.foodImage}

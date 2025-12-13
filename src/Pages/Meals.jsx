@@ -69,7 +69,7 @@ const MealsPage = () => {
             <img
               src={meal.foodImage}
               alt={meal.foodName}
-              className="h-60 w-full object-cover"
+              className="h-44 sm:h-56 w-full object-cover"
             />
 
             <div className="p-5">
