@@ -7,12 +7,12 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCT00mnk6ylSy8shYhVezcwl1fIeA2ieM8",
-  authDomain: "cooking-app-a49f6.firebaseapp.com",
-  projectId: "cooking-app-a49f6",
-  storageBucket: "cooking-app-a49f6.firebasestorage.app",
-  messagingSenderId: "350627470760",
-  appId: "1:350627470760:web:1bbd6281ed0e61e28e919d",
+  apiKey: import.meta.env.VITE_apiKey,
+  authDomain: import.meta.env.VITE_authDomain,
+  projectId: import.meta.env.VITE_projectId,
+  storageBucket: import.meta.env.VITE_storageBucket,
+  messagingSenderId: import.meta.env.VITE_messagingSenderId,
+  appId: import.meta.env.VITE_appId,
 };
 
 // Initialize Firebase
