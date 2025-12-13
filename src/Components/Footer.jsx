@@ -46,22 +46,36 @@ const Footer = () => {
 
           <h3 className="text-xl font-semibold text-white mb-3">Follow Us</h3>
           <div className="flex items-center gap-4 text-xl">
-            <Link to="https://www.facebook.com/Tanvirhossain.reza/">
-              <FaFacebook className="hover:text-white duration-200" />
-            </Link>
-            <Link to="https://www.instagram.com/tanvir_reza04/">
+            <a
+              href="https://www.facebook.com/Tanvirhossain.reza/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaFacebook />
+            </a>
+
+            <a
+              href="https://www.instagram.com/tanvir_reza04/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <FaInstagram className="hover:text-white duration-200" />
-            </Link>
-            <Link to="https://x.com/reza_tanvi18747">
+            </a>
+
+            <a
+              href="https://x.com/reza_tanvi18747"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <FaXTwitter className="hover:text-white duration-200" />
-            </Link>
+            </a>
           </div>
         </div>
       </div>
 
       {/* Bottom Copyright */}
       <div className="border-t border-gray-700 py-4 text-center text-gray-400 text-sm">
-        © {new Date().getFullYear()} LocalChefBazaar — All Rights Reserved.
+        © {new Date().getFullYear()} GhoreyRanna — All Rights Reserved.
       </div>
     </footer>
   );

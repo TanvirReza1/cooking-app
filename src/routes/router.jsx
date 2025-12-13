@@ -218,7 +218,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/dashboard/statistics",
+        path: "statistics",
         element: (
           <PrivateRoute>
             <AdminRoute>

@@ -15,7 +15,7 @@ const PrivateRoute = ({ children }) => {
 
   // If user not logged in, redirect to login page
   if (!user) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/login" replace />;
   }
 
   // If user exists, allow access
