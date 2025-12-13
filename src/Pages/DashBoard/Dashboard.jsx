@@ -5,6 +5,7 @@ import { FiMenu, FiInbox, FiHome } from "react-icons/fi";
 import {
   MdAddCircle,
   MdBarChart,
+  MdFastfood,
   MdFavorite,
   MdGroups2,
   MdManageAccounts,
@@ -123,6 +124,16 @@ const Dashboard = () => {
                     >
                       <FiInbox size={18} />
                       <span>Order Requests</span>
+                    </Link>
+                  </li>
+
+                  <li>
+                    <Link
+                      to="/dashboard/my-meals"
+                      className="flex items-center gap-3 rounded-lg hover:bg-base-300 transition-all"
+                    >
+                      <MdFastfood size={18} />
+                      <span>My Meals</span>
                     </Link>
                   </li>
                 </>

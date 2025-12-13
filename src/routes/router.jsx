@@ -23,6 +23,7 @@ import PlatformStatistics from "../Pages/DashBoard/AdminDashBoard/PlatformStatis
 import ErrorPage from "../ErrorPage";
 import SetTitle from "../Components/SetTitile";
 import ChefRoute from "./ChefRoute";
+import MyMeals from "../Pages/DashBoard/ChefDashboard/MyMeals";
 
 const router = createBrowserRouter([
   // MAIN LAYOUT
@@ -175,6 +176,18 @@ const router = createBrowserRouter([
             <ChefRoute>
               <SetTitle title="Order Requests">
                 <OrderRequests></OrderRequests>
+              </SetTitle>
+            </ChefRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "my-meals",
+        element: (
+          <PrivateRoute>
+            <ChefRoute>
+              <SetTitle title="My Meals">
+                <MyMeals />
               </SetTitle>
             </ChefRoute>
           </PrivateRoute>

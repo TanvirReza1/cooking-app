@@ -102,7 +102,7 @@ const NavBar = () => {
               <label tabIndex={0} className="cursor-pointer">
                 <img
                   src={user.photoURL || "https://i.ibb.co/K0s5Lq7/user.png"}
-                  className="w-10 h-10 rounded-full border"
+                  className="w-10 h-10 rounded-full object-cover border-2 border-primary shadow-sm hover:scale-105 transition"
                 />
               </label>
 

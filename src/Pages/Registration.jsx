@@ -90,7 +90,7 @@ const Registration = () => {
           <input
             type="file"
             accept="image/*"
-            className="input input-bordered w-full"
+            className="file-input file-input-bordered w-full"
             {...register("image", { required: true })}
           />
           {errors.image && (

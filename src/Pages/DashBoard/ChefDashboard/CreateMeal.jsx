@@ -1,14 +1,15 @@
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
-import { imageUpload } from "../../../utils";
-
-import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
+import { imageUpload } from "../../../utils";
+import { useNavigate } from "react-router";
 
 const CreateMeal = () => {
   const { user } = useAuth();
-
-  const axiosSecure = useAxiosSecure(); // <-- CALL the hook
+  const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -17,29 +18,31 @@ const CreateMeal = () => {
     formState: { errors },
   } = useForm();
 
-  // FORM SUBMIT
+  // FORM SUBMIT HANDLER
   const onSubmit = async (data) => {
     try {
-      // 1️⃣ upload image first
-      const imageUrl = await imageUpload(data.foodImage[0]);
+      // 1️⃣ Get file from input
+      const imageFile = data.foodImage[0];
+      // 2️⃣ Upload to imgbb
+      const imageUrl = await imageUpload(imageFile);
 
-      // 2️⃣ Prepare meal object
       const meal = {
         foodName: data.foodName,
-        chefName: data.chefName,
+        chefName: userData?.name || user?.displayName,
+
         foodImage: imageUrl,
         price: parseFloat(data.price),
         rating: 0,
         ingredients: data.ingredients.split(",").map((i) => i.trim()),
+        deliveryArea: data.deliveryArea,
         estimatedDeliveryTime: data.estimatedDeliveryTime,
         chefExperience: data.chefExperience,
-        chefId: data.chefId,
+        chefId: userData?.chefId,
         chefEmail: user?.email,
-
         createdAt: new Date(),
       };
 
-      // 3️⃣ send meal to DB
+      // Send to DB
       const res = await axiosSecure.post("/meals", meal);
 
       if (res.data.insertedId) {
@@ -51,6 +54,9 @@ const CreateMeal = () => {
         });
 
         reset();
+
+        // Redirect to My Meals page
+        navigate("/dashboard/my-meals");
       }
     } catch (err) {
       Swal.fire({
@@ -60,6 +66,19 @@ const CreateMeal = () => {
       });
     }
   };
+
+  const { data: userData, isLoading } = useQuery({
+    queryKey: ["userData", user?.email],
+    enabled: !!user?.email,
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/users/${user.email}`);
+      return res.data;
+    },
+  });
+
+  if (isLoading) {
+    return <div className="text-center mt-20">Loading...</div>;
+  }
 
   return (
     <div className="max-w-3xl mx-auto p-6 shadow-lg bg-white rounded-lg mt-10">
@@ -77,25 +96,29 @@ const CreateMeal = () => {
           {errors.foodName && <p className="text-red-500">Required</p>}
         </div>
 
-        {/* Chef Name */}
+        {/* Chef Name (Auto) */}
         <div>
           <label>Chef Name</label>
           <input
             type="text"
-            {...register("chefName", { required: true })}
-            className="input input-bordered w-full"
+            value={userData?.name || user?.displayName || "Chef"}
+            readOnly
+            className="input input-bordered w-full bg-gray-200 cursor-not-allowed"
           />
         </div>
 
-        {/* Food Image */}
+        {/* Food Image Upload */}
         <div>
-          <label>Food Image (Upload)</label>
+          <label>Food Image</label>
           <input
             type="file"
             accept="image/*"
             {...register("foodImage", { required: true })}
-            className="file-input w-full"
+            className="file-input file-input-bordered w-full"
           />
+          {errors.foodImage && (
+            <p className="text-red-500">Image is required</p>
+          )}
         </div>
 
         {/* Price */}
@@ -103,10 +126,11 @@ const CreateMeal = () => {
           <label>Price</label>
           <input
             type="number"
-            step="0.01"
+            inputMode="decimal"
             {...register("price", { required: true })}
             className="input input-bordered w-full"
           />
+          {errors.price && <p className="text-red-500 text-sm">Required</p>}
         </div>
 
         {/* Ingredients */}
@@ -117,6 +141,24 @@ const CreateMeal = () => {
             className="textarea textarea-bordered w-full"
             placeholder="e.g. Chicken, Lettuce, Olive oil"
           ></textarea>
+
+          {errors.ingredients && (
+            <p className="text-red-500 text-sm">Required</p>
+          )}
+        </div>
+
+        {/* Delivery Area */}
+        <div>
+          <label>Delivery Area</label>
+          <input
+            type="text"
+            {...register("deliveryArea", { required: true })}
+            className="input input-bordered w-full"
+            placeholder="e.g. Dhanmondi, Mirpur, Uttara"
+          />
+          {errors.deliveryArea && (
+            <p className="text-red-500 text-sm">Required</p>
+          )}
         </div>
 
         {/* Estimated Delivery Time */}
@@ -128,6 +170,9 @@ const CreateMeal = () => {
             className="input input-bordered w-full"
             placeholder="30 minutes"
           />
+          {errors.estimatedDeliveryTime && (
+            <p className="text-red-500 text-sm">Required</p>
+          )}
         </div>
 
         {/* Chef Experience */}
@@ -138,6 +183,9 @@ const CreateMeal = () => {
             className="textarea textarea-bordered w-full"
             placeholder="5 years of experience..."
           ></textarea>
+          {errors.chefExperience && (
+            <p className="text-red-500 text-sm">Required</p>
+          )}
         </div>
 
         {/* Chef ID */}
@@ -145,13 +193,13 @@ const CreateMeal = () => {
           <label>Chef ID</label>
           <input
             type="text"
-            {...register("chefId", { required: true })}
-            className="input input-bordered w-full"
-            placeholder="chef_123456"
+            value={userData?.chefId}
+            readOnly
+            className="input input-bordered w-full bg-gray-200 cursor-not-allowed"
           />
         </div>
 
-        {/* User Email (read only) */}
+        {/* User Email */}
         <div>
           <label>Your Email</label>
           <input
