@@ -3,9 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import cook from "../../assets/cook.avif";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, EffectCoverflow, Pagination } from "swiper/modules";
-import { FaQuoteLeft } from "react-icons/fa";
+
 import Reviews from "./Review";
 
 const Home = () => {
@@ -19,10 +17,20 @@ const Home = () => {
   } = useQuery({
     queryKey: ["home-meals"],
     queryFn: async () => {
-      const res = await axios.get(`${backendURL}/meals`);
-      return res.data.slice(0, 6);
+      const res = await axios.get(`${backendURL}/meals?page=1&limit=6`);
+      return res.data.meals; // ✅ IMPORTANT
     },
   });
+
+  {
+    mealsLoading && <p className="text-center py-10">Loading meals...</p>;
+  }
+
+  {
+    mealsError && (
+      <p className="text-center text-red-500 py-10">Failed to load meals</p>
+    );
+  }
 
   return (
     <div className="space-y-24 pb-24">

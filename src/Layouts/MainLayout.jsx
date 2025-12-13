@@ -18,6 +18,3 @@ const MainLayout = () => {
 };
 
 export default MainLayout;
-
-// className="flex-1"
-// className="min-h-screen flex flex-col"
