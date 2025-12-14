@@ -22,16 +22,6 @@ const Home = () => {
     },
   });
 
-  {
-    mealsLoading && <p className="text-center py-10">Loading meals...</p>;
-  }
-
-  {
-    mealsError && (
-      <p className="text-center text-red-500 py-10">Failed to load meals</p>
-    );
-  }
-
   return (
     <div className="space-y-24 pb-24">
       {/* ================= HERO SECTION ================= */}
@@ -78,6 +68,12 @@ const Home = () => {
         <h2 className="w-full max-w-md mx-auto drop-shadow-2xl md:max-w-lg text-4xl font-bold tracking-wide mb-10 text-center">
           Today’s Special Meals
         </h2>
+
+        {mealsLoading && <p className="text-center py-10">Loading meals...</p>}
+
+        {mealsError && (
+          <p className="text-center text-red-500 py-10">Failed to load meals</p>
+        )}
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {meals.map((meal) => (

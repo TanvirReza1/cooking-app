@@ -13,6 +13,7 @@ const FavoriteMeals = () => {
   // Fetch favorites for the logged-in user
   const { data: favorites = [], isLoading } = useQuery({
     queryKey: ["favorites", user?.email],
+    enabled: !!user?.email,
     queryFn: async () => {
       const res = await axiosSecure.get(`/favorites/${user.email}`);
       return res.data;

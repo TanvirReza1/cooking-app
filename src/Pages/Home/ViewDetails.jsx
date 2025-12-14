@@ -25,6 +25,7 @@ const ViewDetails = () => {
     error,
   } = useQuery({
     queryKey: ["meal", id],
+    enabled: !!id,
     queryFn: async () => {
       const res = await axiosSecure.get(`/meals/${id}`);
       return res.data;
@@ -154,6 +155,7 @@ const ViewDetails = () => {
             </Link>
 
             <button
+              disabled={favoriteMutation.isLoading}
               onClick={handleAddFavorite}
               className="bg-yellow-500 text-white px-5 py-2 rounded-lg"
             >

@@ -13,7 +13,8 @@ const MyReview = () => {
 
   // GET logged-in user's reviews
   const { data: myReviews = [], isLoading } = useQuery({
-    queryKey: ["myReviews"],
+    queryKey: ["myReviews", user?.email],
+    enabled: !!user?.email,
     queryFn: async () => {
       const res = await axiosSecure.get(`/user-reviews?email=${user?.email}`);
       return res.data;

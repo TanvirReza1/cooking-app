@@ -3,6 +3,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { imageUpload } from "../../../utils";
 
 const MyMeals = () => {
   const { user } = useAuth();
@@ -54,13 +55,27 @@ const MyMeals = () => {
     },
   });
 
-  const handleUpdate = (e) => {
+  const handleUpdate = async (e) => {
     e.preventDefault();
 
     const form = e.target;
+    const imageFile = form.image.files[0];
+
+    let imageUrl = editingMeal.foodImage;
+
+    // ✅ Upload new image ONLY if selected
+    if (imageFile) {
+      try {
+        imageUrl = await imageUpload(imageFile);
+      } catch (err) {
+        Swal.fire("Error", "Image upload failed", "error");
+        return;
+      }
+    }
+
     const updated = {
       foodName: form.foodName.value,
-      foodImage: form.foodImage.value,
+      foodImage: imageUrl,
       price: parseFloat(form.price.value),
       ingredients: form.ingredients.value.split(","),
       estimatedDeliveryTime: form.estimatedDeliveryTime.value,
@@ -139,10 +154,17 @@ const MyMeals = () => {
               className="input input-bordered w-full mb-2"
             />
 
+            <img
+              src={editingMeal.foodImage}
+              alt="Current Meal"
+              className="w-full h-40 object-cover rounded mb-2"
+            />
+
             <input
-              name="foodImage"
-              defaultValue={editingMeal.foodImage}
-              className="input input-bordered w-full mb-2"
+              type="file"
+              name="image"
+              accept="image/*"
+              className="file-input file-input-bordered w-full mb-2"
             />
 
             <input
