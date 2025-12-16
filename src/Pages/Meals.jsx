@@ -7,7 +7,9 @@ import useAxiosSecure from "../Hooks/useAxiosSecure";
 const MealsPage = () => {
   const axiosSecure = useAxiosSecure();
 
+  const [openSort, setOpenSort] = useState(false);
   const [sortOrder, setSortOrder] = useState("asc");
+
   const [page, setPage] = useState(1);
 
   const limit = 10;
@@ -48,12 +50,45 @@ const MealsPage = () => {
           Today’s Special Meals
         </h2>
 
-        <button
-          onClick={() => setSortOrder(sortOrder === "asc" ? "desc" : "asc")}
-          className="px-6 py-2 bg-purple-600 text-white rounded-xl shadow-md hover:bg-purple-700 transition"
-        >
-          Sort by Price {sortOrder === "asc" ? "⬆" : "⬇"}
-        </button>
+        <div className="relative">
+          {/* Sort Button */}
+          <button
+            onClick={() => setOpenSort(!openSort)}
+            className="flex items-center gap-2 px-6 py-2 bg-purple-600 text-white rounded-xl shadow-md hover:bg-purple-700 transition"
+          >
+            Sort by Price
+            <span className="text-sm">▾</span>
+          </button>
+
+          {/* Dropdown */}
+          {openSort && (
+            <div className="absolute right-0 mt-2 w-44 bg-white rounded-xl shadow-xl border z-50 overflow-hidden">
+              <button
+                onClick={() => {
+                  setSortOrder("asc");
+                  setOpenSort(false);
+                }}
+                className={`w-full text-left px-4 py-3 hover:bg-purple-100 transition ${
+                  sortOrder === "asc" ? "bg-purple-50 font-semibold" : ""
+                }`}
+              >
+                Low to High
+              </button>
+
+              <button
+                onClick={() => {
+                  setSortOrder("desc");
+                  setOpenSort(false);
+                }}
+                className={`w-full text-left px-4 py-3 hover:bg-purple-100 transition ${
+                  sortOrder === "desc" ? "bg-purple-50 font-semibold" : ""
+                }`}
+              >
+                High to Low
+              </button>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* ===== MEALS GRID ===== */}
