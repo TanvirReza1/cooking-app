@@ -63,6 +63,10 @@ const MyOrders = () => {
                 <strong>Payment Status:</strong> {order.paymentStatus}
               </p>
               <p>
+                <strong>Chef:</strong> {order.chefName}
+              </p>
+
+              <p>
                 <strong>Chef ID:</strong> {order.chefId}
               </p>
 

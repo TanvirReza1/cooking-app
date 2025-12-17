@@ -67,6 +67,7 @@ const OrderPage = () => {
           quantity: safeQuantity,
           chefId: finalMeal.chefId,
           chefEmail: finalMeal.chefEmail,
+          chefName: finalMeal.chefName,
           paymentStatus: "Pending",
           userEmail: user?.email || "",
           userAddress,
