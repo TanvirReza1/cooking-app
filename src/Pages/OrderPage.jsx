@@ -81,12 +81,22 @@ const OrderPage = () => {
             Swal.fire("Order placed successfully!", "", "success");
             navigate("/dashboard/my-orders");
           })
-          .catch(() => {
-            Swal.fire(
-              "Error",
-              "There was a problem placing your order. Try again.",
-              "error"
-            );
+          .catch((error) => {
+            const errorType = error?.response?.data?.errorType;
+            const message =
+              error?.response?.data?.message ||
+              "There was a problem placing your order.";
+
+            if (errorType === "FRAUD_USER") {
+              Swal.fire({
+                icon: "error",
+                title: "Order Blocked",
+                text: message,
+              });
+              return;
+            }
+
+            Swal.fire("Error", message, "error");
           });
       }
     });
