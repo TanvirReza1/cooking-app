@@ -71,7 +71,10 @@ const Reviews = () => {
         className="mySwiper"
       >
         {reviews.map((review) => (
-          <SwiperSlide key={review._id} className="w-[350px] md:w-[450px]">
+          <SwiperSlide
+            key={review._id}
+            className="w-[280px] sm:w-[350px] md:w-[450px]"
+          >
             <ReviewCard review={review} />
           </SwiperSlide>
         ))}

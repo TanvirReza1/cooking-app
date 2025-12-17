@@ -10,22 +10,24 @@ const ReviewCard = ({ review }) => {
     : "Unknown date";
 
   return (
-    <div className="bg-white p-6 rounded-2xl shadow-xl">
+    <div className="bg-white  p-4 sm:p-6  rounded-2xl shadow-xl">
       {/* Quote Icon */}
       <span className="text-purple-600 text-3xl font-bold">“</span>
 
       {/* Review Comment */}
-      <p className="mt-4 text-gray-700 min-h-[80px]">{comment}</p>
+      <p className="mt-3 sm:mt-4 text-sm sm:text-base text-gray-700 min-h-[80px]">
+        {comment}
+      </p>
 
       <hr className="my-4" />
 
-      <div className="flex items-center gap-4">
+      <div className="flex items-start sm:items-center gap-3 sm:gap-4">
         {/* Reviewer Image */}
         {reviewerImage ? (
           <img
             src={reviewerImage}
             alt={reviewerName}
-            className="w-12 h-12 rounded-full object-cover"
+            className="w-10 h-10 sm:w-12 sm:h-12  rounded-full object-cover"
           />
         ) : (
           <div className="w-12 h-12 rounded-full bg-teal-600"></div>
