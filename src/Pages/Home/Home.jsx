@@ -33,11 +33,11 @@ const Home = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1 }}
           >
-            <h1 className="text-5xl md:text-6xl font-extrabold leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold leading-tight">
               Discover Daily{" "}
               <span className="text-yellow-300">Delicious Meals</span>
             </h1>
-            <p className="mt-5 text-lg md:text-xl w-11/12">
+            <p className="mt-5 text-base sm:text-lg md:text-xl w-full sm:w-11/12">
               Freshly cooked meals by expert chefs. Choose from a variety of
               flavors every day.
             </p>
@@ -75,7 +75,7 @@ const Home = () => {
           <p className="text-center text-red-500 py-10">Failed to load meals</p>
         )}
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
           {meals.map((meal) => (
             <motion.div
               key={meal._id}

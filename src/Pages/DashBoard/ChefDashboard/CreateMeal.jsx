@@ -58,11 +58,24 @@ const CreateMeal = () => {
         // Redirect to My Meals page
         navigate("/dashboard/my-meals");
       }
-    } catch (err) {
+    } catch (error) {
+      // 🛑 Fraud chef case (DO NOT LOGOUT)
+      if (error?.response?.data?.errorType === "FRAUD_USER") {
+        Swal.fire({
+          icon: "error",
+          title: "Access Denied",
+          text:
+            error.response.data.message ||
+            "You are marked as fraud. You cannot create meals.",
+        });
+        return;
+      }
+
+      // ❌ Other errors
       Swal.fire({
         icon: "error",
         title: "Something went wrong",
-        text: err.message,
+        text: error.message,
       });
     }
   };

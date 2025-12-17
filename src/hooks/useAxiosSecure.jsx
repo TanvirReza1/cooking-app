@@ -33,11 +33,19 @@ const useAxiosSecure = () => {
     // Response Interceptor
     const responseInterceptor = axiosSecure.interceptors.response.use(
       (response) => response,
-      (error) => {
+      async (error) => {
         const status = error?.response?.status;
+        const errorType = error?.response?.data?.errorType;
 
-        if (status === 401 || status === 403) {
-          logOut().then(() => navigate("/"));
+        // ✅ Logout ONLY if token is invalid / expired
+        if (status === 401) {
+          await logOut();
+          navigate("/");
+        }
+
+        // ❌ Do NOT logout fraud users (business rule)
+        if (status === 403 && errorType === "FRAUD_USER") {
+          return Promise.reject(error);
         }
 
         return Promise.reject(error);
