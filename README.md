@@ -20,11 +20,18 @@ This project was built as part of B12-A11 (Category-15) assignment requirements.
 🌐 Live Website
 
 🔗 Live Client URL:
-👉 regal-cobbler-c7d50a.netlify.app
+👉 https://regal-cobbler-c7d50a.netlify.app
 
 🔗 Server URL:
-👉 cooking-app-server.vercel.app
+👉 https://cooking-app-server.vercel.app
 
+
+## 🔗 Source Code
+- Client Repository: https://github.com/TanvirReza1/cooking-app.git
+- Server Repository: https://github.com/TanvirReza1/cooking-app-server.git
+
+## 🖼️ Screenshot
+![GhoreyRanna Screenshot](./ghoreyRanna.png)
 
 
 🧩 Key Features
@@ -150,3 +157,69 @@ JWT Authentication
 Stripe Payment Gateway
 
 CORS & Security Middleware
+
+---
+
+## 🚀 How to Run the Project Locally
+
+### 1️⃣ Run Client Side
+```bash
+git clone https://github.com/TanvirReza1/cooking-app.git
+cd cooking-app
+npm install
+npm run dev
+
+
+2️⃣ Run Server Side
+git clone https://github.com/TanvirReza1/cooking-app-server.git
+cd cooking-app-server
+npm install
+npm run start
+
+
+3️⃣ Environment Variables
+Create .env files for both client and server.
+
+Client Side (.env)
+VITE_FIREBASE_API_KEY=your_key
+VITE_FIREBASE_AUTH_DOMAIN=your_domain
+VITE_FIREBASE_PROJECT_ID=your_project_id
+VITE_FIREBASE_STORAGE_BUCKET=your_bucket
+VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+VITE_FIREBASE_APP_ID=your_app_id
+VITE_BACKEND_URL=your_backend_url
+
+Server Side (.env)
+MONGODB_URI=your_mongodb_uri
+JWT_SECRET=your_jwt_secret
+STRIPE_SECRET_KEY=your_stripe_key
+FIREBASE_SERVICE_ACCOUNT=your_base64_service_account
+
+
+
+## 📦 Dependencies Used
+
+### Client Side
+- react
+- react-dom
+- react-router-dom
+- tailwindcss
+- daisyui
+- framer-motion
+- react-hook-form
+- @tanstack/react-query
+- axios
+- sweetalert2
+- recharts
+- swiper
+- firebase
+```
+### Server Side
+```
+- express
+- mongodb
+- cors
+- dotenv
+- jsonwebtoken
+- stripe
+- firebase-admin
