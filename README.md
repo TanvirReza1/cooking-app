@@ -162,8 +162,9 @@ CORS & Security Middleware
 
 ## 🚀 How to Run the Project Locally
 
-### 1️⃣ Run Client Side
+
 ```bash
+1️⃣ Run Client Side
 git clone https://github.com/TanvirReza1/cooking-app.git
 cd cooking-app
 npm install
