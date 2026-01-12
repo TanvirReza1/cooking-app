@@ -110,12 +110,12 @@ const ViewDetails = () => {
   return (
     <section className="max-w-4xl mx-auto p-6">
       {/* ---------------- MEAL CARD ---------------- */}
-      <div className="bg-white rounded-2xl shadow-md overflow-hidden">
+      <div className=" rounded-2xl shadow-md overflow-hidden">
         <img src={meal.foodImage} className="w-full h-80 object-cover" />
 
         <div className="p-6">
           <h1 className="text-3xl font-bold">{meal.foodName}</h1>
-          <p className="text-sm text-gray-600 mt-1">
+          <p className="text-sm text-gray-400 mt-1">
             Chef: {meal.chefName} (ID: {meal.chefId})
           </p>
 

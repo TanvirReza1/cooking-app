@@ -82,7 +82,7 @@ const PaymentSuccess = () => {
       </p>
 
       {/* RECEIPT CARD */}
-      <div className="border p-4 rounded-lg shadow bg-white text-left">
+      <div className="border p-4 rounded-lg shadow  text-left">
         <h2 className="text-xl font-semibold mb-2 border-b pb-2">Receipt</h2>
 
         <p>

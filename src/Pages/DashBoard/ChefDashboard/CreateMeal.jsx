@@ -94,7 +94,7 @@ const CreateMeal = () => {
   }
 
   return (
-    <div className="max-w-3xl mx-auto p-6 shadow-lg bg-white rounded-lg mt-10">
+    <div className="max-w-3xl mx-auto p-6 shadow-lg  rounded-lg mt-10">
       <h2 className="text-3xl font-bold text-center mb-5">Create Meal</h2>
 
       <form onSubmit={handleSubmit(onSubmit)} className="grid gap-5">
@@ -116,7 +116,7 @@ const CreateMeal = () => {
             type="text"
             value={userData?.name || user?.displayName || "Chef"}
             readOnly
-            className="input input-bordered w-full bg-gray-200 cursor-not-allowed"
+            className="input input-bordered w-full  cursor-not-allowed"
           />
         </div>
 
@@ -208,7 +208,7 @@ const CreateMeal = () => {
             type="text"
             value={userData?.chefId}
             readOnly
-            className="input input-bordered w-full bg-gray-200 cursor-not-allowed"
+            className="input input-bordered w-full  cursor-not-allowed"
           />
         </div>
 
@@ -219,7 +219,7 @@ const CreateMeal = () => {
             type="email"
             value={user?.email}
             readOnly
-            className="input input-bordered w-full bg-gray-200 cursor-not-allowed"
+            className="input input-bordered w-full  cursor-not-allowed"
           />
         </div>
 

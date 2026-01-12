@@ -103,7 +103,7 @@ const OrderPage = () => {
   };
 
   return (
-    <div className="max-w-lg mx-auto p-6 bg-white rounded-xl shadow">
+    <div className="max-w-lg mx-auto p-6  rounded-xl shadow">
       <h2 className="text-2xl font-bold mb-4">Confirm Your Order</h2>
 
       <div className="space-y-3">

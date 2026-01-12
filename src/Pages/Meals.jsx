@@ -6,7 +6,7 @@ import useAxiosSecure from "../Hooks/useAxiosSecure";
 
 /* ================= SKELETON CARD ================= */
 const MealSkeleton = () => (
-  <div className="bg-white rounded-2xl border shadow-md overflow-hidden animate-pulse">
+  <div className=" rounded-2xl border shadow-md overflow-hidden animate-pulse">
     <div className="h-48 bg-gray-200" />
     <div className="p-5 space-y-3">
       <div className="h-4 bg-gray-200 rounded w-3/4" />
@@ -59,9 +59,7 @@ const MealsPage = () => {
     <section className="max-w-7xl mx-auto px-6 py-16">
       {/* ================= HEADER ================= */}
       <div className="flex flex-col md:flex-row items-center justify-between mb-10 gap-6">
-        <h2 className="text-4xl font-extrabold text-gray-800">
-          Explore Our Meals
-        </h2>
+        <h2 className="text-4xl font-extrabold ">Explore Our Meals</h2>
       </div>
 
       {/* ================= SEARCH & FILTER ================= */}
@@ -115,7 +113,7 @@ const MealsPage = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
-              className="bg-white rounded-2xl border shadow-md hover:shadow-xl transition overflow-hidden flex flex-col h-full"
+              className=" rounded-2xl border shadow-md hover:shadow-xl transition overflow-hidden flex flex-col h-full"
             >
               <img
                 src={meal.foodImage}
@@ -124,11 +122,9 @@ const MealsPage = () => {
               />
 
               <div className="p-5 flex flex-col flex-grow">
-                <h3 className="text-xl font-bold text-gray-800">
-                  {meal.foodName}
-                </h3>
+                <h3 className="text-xl font-bold ">{meal.foodName}</h3>
 
-                <p className="text-gray-600 text-sm mt-2 line-clamp-2">
+                <p className=" text-sm mt-2 line-clamp-2">
                   {meal.description ||
                     "Delicious homemade meal prepared by expert chefs."}
                 </p>
@@ -165,7 +161,7 @@ const MealsPage = () => {
             className={`px-4 py-2 rounded-lg border transition ${
               page === num + 1
                 ? "bg-purple-600 text-white"
-                : "bg-white hover:bg-purple-100"
+                : "hover:bg-purple-100"
             }`}
           >
             {num + 1}
