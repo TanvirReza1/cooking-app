@@ -24,6 +24,10 @@ import ErrorPage from "../ErrorPage";
 import SetTitle from "../Components/SetTitile";
 import ChefRoute from "./ChefRoute";
 import MyMeals from "../Pages/DashBoard/ChefDashboard/MyMeals";
+import About from "../Pages/About";
+import Privacy from "../Pages/Privacy";
+import Terms from "../Pages/Terms";
+import Contact from "../Pages/Contact";
 
 const router = createBrowserRouter([
   // MAIN LAYOUT
@@ -37,6 +41,38 @@ const router = createBrowserRouter([
         element: (
           <SetTitle title="Home">
             <Home />
+          </SetTitle>
+        ),
+      },
+      {
+        path: "about",
+        element: (
+          <SetTitle title="About">
+            <About />
+          </SetTitle>
+        ),
+      },
+      {
+        path: "contact",
+        element: (
+          <SetTitle title="Contact">
+            <Contact />
+          </SetTitle>
+        ),
+      },
+      {
+        path: "privacy",
+        element: (
+          <SetTitle title="Privacy Policy">
+            <Privacy />
+          </SetTitle>
+        ),
+      },
+      {
+        path: "terms",
+        element: (
+          <SetTitle title="Terms & Conditions">
+            <Terms />
           </SetTitle>
         ),
       },

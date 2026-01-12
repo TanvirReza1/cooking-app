@@ -41,9 +41,16 @@ const Reviews = () => {
   return (
     <div className="my-24">
       <div className="text-center mb-24">
-        <h3 className="text-3xl font-bold my-8">Reviews</h3>
-        <p className="text-gray-600">
-          What our customers are saying about our meals.
+        <span className="inline-block mb-4 px-4 py-1 rounded-full bg-gray-100 text-gray-700 text-sm font-semibold tracking-wide">
+          Reviews
+        </span>
+
+        <h3 className="text-4xl md:text-5xl font-extrabold  tracking-tight">
+          What Our Customers Say
+        </h3>
+
+        <p className="mt-6  max-w-xl mx-auto text-lg">
+          Honest feedback from people who enjoy our homemade meals.
         </p>
       </div>
 

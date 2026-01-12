@@ -5,6 +5,7 @@ import { FiMenu, FiInbox, FiHome } from "react-icons/fi";
 import {
   MdAddCircle,
   MdBarChart,
+  MdDashboard,
   MdFastfood,
   MdFavorite,
   MdGroups2,
@@ -59,6 +60,7 @@ const Dashboard = () => {
 
             <ul className="menu text-base-content gap-2">
               {/* ⭐ COMMON FOR ALL USERS */}
+
               <li>
                 <Link
                   to="/dashboard/user-profile"
